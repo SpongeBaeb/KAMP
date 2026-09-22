@@ -1,0 +1,2 @@
+CV Average RMSE: 11.6787
+CV Average R2: 0.9594

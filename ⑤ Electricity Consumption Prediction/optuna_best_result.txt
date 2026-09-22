@@ -1,0 +1,2 @@
+Best RMSE: 11.66027342066155
+Best Params: {'learning_rate': 0.03604637375513952, 'num_leaves': 72, 'max_depth': 14, 'min_data_in_leaf': 11, 'feature_fraction': 0.6222371855279993, 'bagging_fraction': 0.8957778230293695, 'bagging_freq': 3, 'lambda_l1': 0.0009366861346680043, 'lambda_l2': 1.966437453407273e-05}
