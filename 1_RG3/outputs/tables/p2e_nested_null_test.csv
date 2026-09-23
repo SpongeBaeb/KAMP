@@ -1,0 +1,2 @@
+﻿observed_prauc,null_prauc_mean,null_prauc_std,p_prauc_greater,observed_roc_auc,null_roc_auc_mean,n_perm,perm_cv
+0.059990809113131795,0.09292666466093284,0.027162978774679925,0.8571428571428571,0.4478442788386897,0.5489258655488279,20,5-fold×2

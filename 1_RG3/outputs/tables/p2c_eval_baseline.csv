@@ -1,0 +1,2 @@
+﻿n_folds,n_train_normals_mean,n_test_mean,n_test_normals_mean,n_test_defects_mean,n_test_defects_min,n_test_defects_max,baseline_defect_rate_mean,baseline_defect_rate_std,baseline_defect_rate_min,baseline_defect_rate_max,note
+50,452.8,118.2,113.2,5.0,5,5,0.04230166642928358,0.00014387587872841418,0.04201680672268908,0.0423728813559322,평가 세트 = 학습에 쓰지 않은 정상 샷 + 불량 샷. PR-AUC 무작위 기준선 = 이 불량 비율

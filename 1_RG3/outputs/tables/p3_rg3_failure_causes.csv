@@ -1,0 +1,8 @@
+﻿no,cause,evidence,source,cn7_comparison
+1,공정 변수에 불량 신호가 없음,"불량과의 최대 상관 |r|=0.094(Barrel_Temperature_5, 보정 p=0.96); 모델 11종 순열 p 0.55~0.97; 22개 후보 중첩 CV PR-AUC 0.060 (순열 0.093)","p2d_label_correlation.csv, p2_summary_by_family.csv, p2e_nested_null_test.csv",CN7 데이터/결과 수령 후 같은 지표 산출 예정
+2,같은 공정 조건에서 양품·불량이 함께 나옴 (쌍 구조),불량 25건 모두 특징값이 같은 양품 쌍둥이를 가짐; 불량은 쌍의 앞쪽 기록에 23/25 (p=1.9e-05),"p1_duplicate_summary.csv, p2e_pair_position_test.csv",CN7 데이터/결과 수령 후 같은 지표 산출 예정
+3,불량이 공정 공간의 이상치가 아님,최근접 정상 거리 중앙값 정상 2.78 vs 불량 2.73 (p=0.65); 이상탐지 4종 ROC-AUC 0.43~0.47,"p2c_nearest_normal_summary.csv, p2c_model_comparison_extended.csv",CN7 데이터/결과 수령 후 같은 지표 산출 예정
+4,공정 조건 변화 전후로 불량 패턴이 뒤바뀜,"idx 1891 전후 불량-양품 차이의 부호 일치 12/23, Spearman ρ=-0.25",p2_regime_feature_shift.csv,CN7 데이터/결과 수령 후 같은 지표 산출 예정
+5,불량 표본이 너무 적음,불량 25건으로 검출 가능한 최소 |d|=0.80 (보정) vs 관측 최대 |d|=0.48; 관측 효과 검출에 불량 약 68건 필요,"p3_mde_curve.csv, p3_defect_effect_sizes.csv",CN7 데이터/결과 수령 후 같은 지표 산출 예정
+6,측정 해상도가 낮음,라벨 데이터 변수별 고유값 2~52개 (중앙값 16); 591샷 중 대부분이 같은 값 조합을 공유,p1_basic_stats.csv,CN7 데이터/결과 수령 후 같은 지표 산출 예정
+7,모델이 쓰는 변수도 우연 수준,SHAP 중요도가 라벨 순열 모델보다 유의하게 큰 변수 0/23개; 50개 fold 모델 간 중요도 순위 일관성 ρ=0.71,p3_shap_importance.csv,CN7 데이터/결과 수령 후 같은 지표 산출 예정

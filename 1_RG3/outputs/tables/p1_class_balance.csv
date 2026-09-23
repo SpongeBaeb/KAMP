@@ -1,0 +1,2 @@
+﻿product,n_rows,n_fail,n_pass,fail_rate,n_unique_feature_rows,n_unlabeled_rows
+RG3,1182,25,1157,0.021150592216582064,591,35941
