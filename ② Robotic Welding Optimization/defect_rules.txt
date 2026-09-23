@@ -1,0 +1,13 @@
+|--- weld force(bar) <= 8.96
+|   |--- weld current(kA) <= 14.53
+|   |   |--- class: 0
+|   |--- weld current(kA) >  14.53
+|   |   |--- class: 0
+|--- weld force(bar) >  8.96
+|   |--- weld force(bar) <= 9.06
+|   |   |--- weld Voltage(v) <= 2.48
+|   |   |   |--- class: 1
+|   |   |--- weld Voltage(v) >  2.48
+|   |   |   |--- class: 1
+|   |--- weld force(bar) >  9.06
+|   |   |--- class: 0
