@@ -1,0 +1,2 @@
+Best ROC-AUC: 0.8797
+Best Params: {'n_estimators': 413, 'max_depth': 13, 'min_samples_split': 11, 'min_samples_leaf': 3, 'max_features': 0.5}
