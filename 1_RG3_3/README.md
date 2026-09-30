@@ -11,6 +11,7 @@
 |---|---|---|
 | `RG33.ipynb` (메인) | `1_CN7/CN7.ipynb` | 섹션 1~8: 데이터 진단 · 정제(역변환·누수 구간·운전 조건·부품 쌍) · 특성 · 평가 설계 · 이상탐지 · 검사 우선순위 · 결과 분석 |
 | `RG33_models.ipynb` | `1_CN7/CN7_models.ipynb` | 지도학습·불균형 대응·이상탐지·튜닝·앙상블 36종 비교 (저장된 결과를 읽어 해석) |
+| `RG31.ipynb` | `1_CN7/CN71.ipynb` | 2차 시도: 선행 논문 기반 파생 변수로 재평가 (결과 `outputs/*/derived_*`) |
 | `model_zoo.py` | `1_CN7/model_zoo.py` | 모델 정의 · 평가 함수 (샷 단위 스태킹, 중첩 튜닝 포함) |
 | `run_models.py` | `1_CN7/run_models.py` | 모델 비교 실행 → `outputs/tables/model_*.csv`, `time_increment.csv` |
 
@@ -49,6 +50,18 @@ CN7에만 맞는 분석 두 곳을 RG3에 맞게 바꿨습니다.
 - 해석 B (쌍 순서 = 검사 결과 기록 순서 → 정답 누수): `pair_pos`를 쓸 수 없고, 공정 값만으로는 무작위 수준 → **전수검사 유지**.
 - 확인 방법: KAMP 원본 1차 가공 데이터(`labeled_data.csv`)의 `PART_NAME`·`TimeStamp`.
 
+**2차 시도: 파생 변수 (`RG31.ipynb`)** — `1_CN7/CN71.ipynb`와 같은 파생 변수 63개(샷 내 13 + 샷 간 변동 50), 같은 8개 모델, 같은 분할·지표로 다시 평가했다.
+
+| E2 앞쪽 부품 안 | PR-AUC | 검사율@재현율0.9 |
+|---|---|---|
+| 무작위 (기준선) | 0.072 ± 0.057 | 91% |
+| 1차 최고: XGBoost (공정 값) | 0.096 ± 0.061 | 88% |
+| 2차 최고: GradientBoosting (공정 값 + 파생 전체) | 0.128 ± 0.087 | 85% |
+
+- **판정: 실패** (사전에 정한 기준). 차이가 fold 표준편차보다 작다. 순열 p = 0.035는 결과를 보고 고른 모델에서만 나왔고, 사전에 고정한 LightGBM(p = 0.79)·로지스틱(p = 0.16)은 유의하지 않다.
+- 단변량으로 유의한 파생 변수는 0개다. 1차 상위 모델(XGBoost·LightGBM)은 파생 변수를 넣으면 오히려 낮아진다. → "공정 값에 불량 정보가 없음"이라는 결론은 그대로다.
+- `RUN = False`로 저장된 결과(`outputs/tables/derived_*.csv`)를 읽는다. 다시 계산하려면 `True` (16코어 기준 약 22분).
+
 ## 실행 방법
 
 Python 3.12 기준.
@@ -72,6 +85,7 @@ jupyter notebook RG33.ipynb     # 또는 VS Code에서 열고 커널로 .venv �
 1_RG3_3/
 ├── RG33.ipynb            # 메인 분석 (실행 결과 포함)
 ├── RG33_models.ipynb     # 모델 비교 36종 결과·해석 (실행 결과 포함)
+├── RG31.ipynb            # 2차 시도: 파생 변수로 재평가 (실행 결과 포함, outputs/*/derived_*)
 ├── model_zoo.py          # 모델 정의 · 평가 함수
 ├── run_models.py         # 모델 비교 실행
 ├── outputs/
