@@ -34,9 +34,10 @@ table6"""),
 ('code', """A = shots[period]
 es2 = (A.loc[A[TARGET] == 1, feats].mean() - A.loc[A[TARGET] == 0, feats].mean()) / A[feats].std()
 es2.reindex(es2.abs().sort_values(ascending=False).index).head(6).round(2)"""),
-('md', """## 운영안: 처음 N샷 전수 검사 (제4장 <표 7>)
+('md', """## 참고: 라벨 구간 처음 N샷 전수 검사 (제4장 <표 7> 참고 행)
 
-표본 안에서 관측한 값이며, 구간(샷 0~60)은 불량 위치를 본 뒤 정한 것이다. 신뢰구간은 샷 단위 Clopper–Pearson 95%."""),
+표본 안에서 관측한 값이며, 구간(샷 0~60)은 불량 위치를 본 뒤 정한 것이다. 신뢰구간은 샷 단위 Clopper–Pearson 95%.
+**운영 규칙으로 쓸 수 없다**: 비라벨 데이터 기준 라벨 샷 0(비라벨 인덱스 751,091)은 직전 큰 중단·조건 변경(인덱스 692,358→735,217)보다 약 440샷 뒤의 생산 중간이다."""),
 ('code', """rows = []
 for n in [30, 61, 100]:
     insp = ev['shot_id'] < n
