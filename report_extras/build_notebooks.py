@@ -84,6 +84,13 @@ a2.axvline(12, ls='--', color='grey'); a2.set_xlabel('회수 기간 (개월), �
 for yi, t in zip(y, scen['회수 기간 T (개월)']):
     a2.text(0.5 if pd.isna(t) else t + 0.3, yi, '회수 불가' if pd.isna(t) else f'{t:.1f}', va='center')
 fig.tight_layout()"""),
+('md', """## 투자비 ±50% 민감도 (보고서 <그림 2>)
+
+투자비(I)는 견적 전 가정치라, 600만·1,200만·1,800만 원에서 회수 기간을 다시 계산한다. 회수 기간은 투자비에 비례한다."""),
+('code', """sens = scen[['시나리오']].copy()
+for inv in [6_000_000, 12_000_000, 18_000_000]:
+    sens[f'I = {inv / 1e4:,.0f}만 원'] = [inv / (s * 1e4) * 12 if s > 0 else float('nan') for s in scen['연간 절감 S (만 원)']]
+sens.round(1)"""),
 ('md', """## 파일럿 판정 기준: 허용 회수 기간에서 역산
 
 검사비 절감만 인정(R1 = R0)하면 r1 ≤ r0 − (I/T + M) / (N·Ci)"""),
