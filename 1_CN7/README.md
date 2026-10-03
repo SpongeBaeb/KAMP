@@ -129,3 +129,10 @@ RG3 노트북과 섹션 번호가 같습니다.
 - ROI 식 반영 (8-3): 검사율은 E2 값을 보수적 기준으로 사용 권장 (E1 값은 불량 시기 찾기가 섞여 과대평가)
 - 계획 3단계: 파생 변수·신규 데이터 — 샷 순서 기준선과 추가 기여 검정(`run_models.time_increment`)으로 같은 방식 판정
 - 원본 1차 가공 데이터의 `TimeStamp`로 샷 24~60이 어떤 시기인지 확인, `PART_NAME`으로 쌍 순서 해석 확정 (RG3와 공통)
+
+## 샷 단위 재평가 (`run_shot_level.py`)
+
+한 샷의 두 부품은 공정 값이 같으므로, 공정 값으로 답할 수 있는 질문은 "이 샷에 불량이 있는가"다. 샷 라벨(두 부품 중 하나라도 불량이면 1)과 공정 값 23개(pair_pos 없음)로 1차와 같은 분할·지표·임계값 규칙을 적용한다. 모델은 결과를 보기 전에 5종(로지스틱 L2, 랜덤포레스트, XGBoost, LightGBM, CatBoost)과 Isolation Forest로 고정했다.
+
+- 실행: `python run_shot_level.py` (1분 내외)
+- 결과: `outputs/tables/shot_level_folds.csv`, `shot_level_summary.csv`, `shot_level_increment.csv`

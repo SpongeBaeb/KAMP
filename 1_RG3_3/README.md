@@ -98,3 +98,10 @@ jupyter notebook RG33.ipynb     # 또는 VS Code에서 열고 커널로 .venv �
 ├── requirements.txt
 └── README.md
 ```
+
+## 샷 단위 재평가 (`run_shot_level.py`)
+
+한 샷의 두 부품은 공정 값이 같으므로, 공정 값으로 답할 수 있는 질문은 "이 샷에 불량이 있는가"다. 샷 라벨(두 부품 중 하나라도 불량이면 1)과 공정 값 23개(pair_pos 없음)로 1차와 같은 분할·지표·임계값 규칙을 적용한다. 모델은 결과를 보기 전에 5종(로지스틱 L2, 랜덤포레스트, XGBoost, LightGBM, CatBoost)과 Isolation Forest로 고정했다.
+
+- 실행: `python run_shot_level.py` (1분 내외)
+- 결과: `outputs/tables/shot_level_folds.csv`, `shot_level_summary.csv`, `shot_level_increment.csv`
